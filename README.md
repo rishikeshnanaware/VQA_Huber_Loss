@@ -43,3 +43,19 @@ The model has four main components:
 ```bash
 python -m venv vqa_env
 source vqa_env/bin/activate  # or use vqa_env\Scripts\activate on Windows
+
+
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+pip install numpy pandas matplotlib scikit-learn scipy opencv-python decord tqdm einops transformers
+
+git clone https://github.com/mlfoundations/open_clip.git
+cd open_clip
+sed -i '92s/return x\[0\]/return x/' src/open_clip/modified_resnet.py
+pip install -e .
+
+git clone https://github.com/vqassessment/DOVER.git
+cd DOVER
+pip install -e .
+mkdir pretrained_weights
+cd pretrained_weights
+wget https://github.com/VQAssessment/DOVER/releases/download/v0.1.0/DOVER.pth
